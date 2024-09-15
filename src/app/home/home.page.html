@@ -9,12 +9,40 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Notas</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div id="form">
+      <ion-item>
+        <ion-input [(ngModel)]="nuevoTexto" placeholder="texto: "></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select [(ngModel)]="nuevoColor" placeholder="elija color">
+          <ion-select-option value="light">Sin color</ion-select-option>
+          <ion-select-option value="danger">Rojo</ion-select-option>
+          <ion-select-option value="secondary">Calipso</ion-select-option>
+          <ion-select-option value="tertiary">Morado</ion-select-option>
+          <ion-select-option value="success">Verde</ion-select-option>
+          <ion-select-option value="warning">Amaeillo</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="full" (click)="crearNota()">{{editando ? 'ACTUALIZAR' : 'GUARDAR'}}</ion-button>
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let nota of notas; let i = index" (click)="selecionarNota(nota)">
+          <ion-card [color]="nota.color">
+            <ion-card-header>
+              <p>{{nota.id}}</p>
+              <ion-card-title>{{nota.texto}}</ion-card-title>
+            </ion-card-header>
+            <ion-button color="primary" (click)="nota.id !== undefined ? eliminarNota(nota.id) : null; $event.stopPropagation()">ELIMINAR</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
   </div>
 </ion-content>
