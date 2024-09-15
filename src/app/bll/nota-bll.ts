@@ -61,5 +61,49 @@ export class NotaBLL {
         });
     }
 
+    public async getColorById(dbService: DbService, id: number) {
+        if(!dbService.database){
+            await dbService.createDb();
+        }
+        const sSelect = 'SELECT color FROM notas WHERE id = ?';
+        return await dbService.database?.executeSql(sSelect, [id])
+        .catch((error) => {
+            console.log('No se pudo seleccionar Color con ID', error);
+        });
+    }
+    
+    public async updateColor(dbService: DbService, id: number, color: string) {
+        if(!dbService.database){
+            await dbService.createDb();
+        }
 
+        const sUpdate = 'UPDATE notas SET color = ? WHERE id = ?';   
+        return await dbService.database?.executeSql(sUpdate, [color, id])
+        .catch((error) => {
+            console.log('No se pudo actualizar Color', error);
+        });
+    }
+    
+    public async getTextoById(dbService: DbService, id: number) {
+        if(!dbService.database){
+            await dbService.createDb();
+        }
+        const sSelect = 'SELECT texto FROM notas WHERE id = ?';
+        return await dbService.database?.executeSql(sSelect, [id])
+        .catch((error) => {
+            console.log('No se pudo seleccionar Texto con ID', error);
+        });
+    }
+
+    public async updateTexto(dbService: DbService, id: number, texto: string) {
+        if(!dbService.database){
+            await dbService.createDb();
+        }
+
+        const sUpdate = 'UPDATE notas SET texto = ? WHERE id = ?';   
+        return await dbService.database?.executeSql(sUpdate, [texto, id])
+        .catch((error) => {
+            console.log('No se pudo actualizar Texto', error);
+        });
+    }
 }
