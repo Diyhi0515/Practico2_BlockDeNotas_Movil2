@@ -52,28 +52,6 @@ export class HomePage {
     }
   }
 
-  editarColor(id: number, color: string) {
-    this.notaBLL.updateColor(this.dbService, id, color)
-    .then(() => {
-      this.notas = [];
-      this.cargarNotas();
-    })
-    .catch((error) => {
-      console.log('Error al editar color', error);
-    });
-  }
-
-  editarTexto(id: number, texto: string) {
-    this.notaBLL.updateTexto(this.dbService, id, texto)
-    .then(() => {
-      this.notas = [];
-      this.cargarNotas();
-      this.limpiarFormulario();
-    })
-    .catch((error) => {
-      console.log('Error al editar texto', error);
-    });
-  }
 
   editarNota(id: number, texto: string, color: string) {
     this.notaBLL.updateNota(this.dbService, id, texto, color)
