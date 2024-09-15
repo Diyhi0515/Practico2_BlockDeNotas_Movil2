@@ -1,0 +1,7 @@
+{
+  "name": "Practico2_Notas",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
