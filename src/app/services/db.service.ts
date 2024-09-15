@@ -31,7 +31,7 @@ export class DbService {
   }
 
   async createTable() {
-    const sqlTable = 'CREATE TABLE IF NOT EXISTS notas (id INTEGER PRIMARY KEY AUTOINCREMENT, texto TEXT)';
+    const sqlTable = 'CREATE TABLE IF NOT EXISTS notas (id INTEGER PRIMARY KEY AUTOINCREMENT, texto TEXT, color TEXT)';
     await this.database?.executeSql(sqlTable, [])
     .then(() => {
       console.log('Tabela creada con exito');

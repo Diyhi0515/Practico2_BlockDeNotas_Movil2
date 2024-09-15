@@ -1,4 +1,5 @@
 export interface Nota {
     id?: number;
-    texto?: string; 
+    texto?: string;
+    color?: string; 
 }

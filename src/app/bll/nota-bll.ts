@@ -25,25 +25,25 @@ export class NotaBLL {
         });
     }
 
-    public async insertNota(dbService: DbService, texto: string) {
+    public async insertNota(dbService: DbService, texto: string, color: string) {
         if(!dbService.database){
             await dbService.createDb();
         }
 
-        const sInsert = 'INSERT INTO notas (texto) VALUES (?)';
-        return await dbService.database?.executeSql(sInsert, [texto])
+        const sInsert = 'INSERT INTO notas (texto, color) VALUES (?, ?)';
+        return await dbService.database?.executeSql(sInsert, [texto, color])
         .catch((error) => {
             console.log('No se pudo insertar Nota', error);
         });
     }
 
-    public async updateNota(dbService: DbService, id: number, texto: string) {
+    public async updateNota(dbService: DbService, id: number, texto: string, color: string) {
         if(!dbService.database){
             await dbService.createDb();
         }
 
-        const sUpdate = 'UPDATE notas SET texto = ? WHERE id = ?';
-        return await dbService.database?.executeSql(sUpdate, [texto, id])
+        const sUpdate = 'UPDATE notas SET texto = ?, color = ? WHERE id = ?';   
+        return await dbService.database?.executeSql(sUpdate, [texto, color, id])
         .catch((error) => {
             console.log('No se pudo actualizar Nota', error);
         });
